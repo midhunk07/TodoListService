@@ -27,7 +27,14 @@ public class TodoListController {
     @PutMapping(value = "/changeDescription", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TodoItem> changeDescription(@RequestParam Integer itemId, String description){;
     return ResponseEntity.ok(todoService.changeDescription(itemId, description));
-}
+    }
+    
+    @PostMapping(value = "/markDone", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TodoItem> markDone(@RequestParam Integer itemId, boolean isDone){
+        return ResponseEntity.ok(todoService.markDone(itemId, isDone, null));
+    }
+
+
     
 
 }

@@ -2,7 +2,7 @@ package com.midhun.programming.todoListService.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.midhun.programming.todoListService.model.Status;
 import com.midhun.programming.todoListService.model.TodoItem;
 import com.midhun.programming.todoListService.repository.TodoItemRepository;
 
@@ -35,7 +35,16 @@ public class TodoServiceImpl implements TodoService {
         return addItem(item);
 	}
 	
-	  
+	 @Override
+	    public TodoItem markDone(Integer itemId, boolean isDone, String status) {
+	        Optional<TodoItem> itemResponse = todoItemRepository.findByItemId(itemId);
+	        TodoItem item = null;
+	        if(itemResponse.isPresent()){
+	            item = itemResponse.get();
+	            item.setStatus(status != null && status.equals(Status.past_due.getStatus())? Status.past_due.getStatus() : isDone ? Status.done.getStatus() : Status.not_done.getStatus());
+	        }
+	        return todoItemRepository.save(item);
+	    }  
 
 	
    

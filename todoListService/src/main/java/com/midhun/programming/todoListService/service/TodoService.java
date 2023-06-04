@@ -9,6 +9,10 @@ public interface TodoService {
 
 		public TodoItem changeDescription(Integer itemId, String description);
 	   
+		
+		public TodoItem markDone(Integer itemId, boolean isDone, String status);
+		
+		
 	}
 
 
