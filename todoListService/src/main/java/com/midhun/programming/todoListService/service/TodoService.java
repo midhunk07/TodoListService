@@ -16,7 +16,7 @@ public interface TodoService {
 		
 		public Iterable<TodoItem> getAllItems(Optional<String> status);
 		
-		
+		 public Optional<TodoItem> getItemsById(Integer itemId);
 	}
 
 

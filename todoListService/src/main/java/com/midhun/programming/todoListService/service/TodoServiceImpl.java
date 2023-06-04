@@ -54,5 +54,11 @@ public class TodoServiceImpl implements TodoService {
 	            return todoItemRepository.findAll();
 	        }
 	    }
+	   
+	   @Override
+	    public Optional<TodoItem> getItemsById(Integer itemId) {
+	        return todoItemRepository.findByItemId(itemId);
+	    }
+
    
 }

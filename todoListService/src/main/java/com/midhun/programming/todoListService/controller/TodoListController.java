@@ -43,7 +43,10 @@ public class TodoListController {
         return ResponseEntity.ok(todoService.getAllItems(status));
     }
     
-    
+    @GetMapping(value = "/getItemsById", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Optional<TodoItem>> getItemsById(@RequestParam Integer itemId) {
+        return ResponseEntity.ok(todoService.getItemsById(itemId));
+    }
 
 
     
