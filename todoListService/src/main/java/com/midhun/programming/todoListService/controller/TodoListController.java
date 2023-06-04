@@ -3,6 +3,7 @@ package com.midhun.programming.todoListService.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import com.midhun.programming.todoListService.model.TodoItem;
 
@@ -49,6 +50,10 @@ public class TodoListController {
     }
 
 
-    
+    @Scheduled(cron = "0 0 23 * * ?")
+    public void changeItemStatusToPastDue(){
+        todoService.changeItemStatusToPastDue();
+
+    }
 
 }

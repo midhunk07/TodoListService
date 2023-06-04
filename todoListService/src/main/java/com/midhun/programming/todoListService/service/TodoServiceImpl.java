@@ -1,5 +1,7 @@
 package com.midhun.programming.todoListService.service;
 
+import java.util.Date;
+import java.util.Iterator;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +60,20 @@ public class TodoServiceImpl implements TodoService {
 	   @Override
 	    public Optional<TodoItem> getItemsById(Integer itemId) {
 	        return todoItemRepository.findByItemId(itemId);
+	    }
+	   
+	   @Override
+	    public void changeItemStatusToPastDue() {
+	        Iterable<TodoItem> items = getAllItems(Optional.of(Status.not_done.getStatus()));
+	        Iterator<TodoItem> iterator = items.iterator();
+	        Date today = new Date();
+	        TodoItem item = null;
+	        while(iterator.hasNext()) {
+	           item = iterator.next();
+	           if(item.getDueDate().before(today)) {
+	               markItem(item.getId(), false, Status.past_due.getStatus());
+	           }
+	        }
 	    }
 
    
