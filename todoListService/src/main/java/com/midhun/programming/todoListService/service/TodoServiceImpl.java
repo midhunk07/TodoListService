@@ -8,6 +8,9 @@ import com.midhun.programming.todoListService.repository.TodoItemRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
+
+import java.util.Optional;
+
 @Slf4j
 @Service
 public class TodoServiceImpl implements TodoService {
@@ -20,5 +23,20 @@ public class TodoServiceImpl implements TodoService {
         return todoItemRepository.save(item);
     }
 
+	@Override
+	public TodoItem changeDescription(Integer itemId, String description) {
+		
+		Optional<TodoItem> itemResponse = todoItemRepository.findByItemId(itemId);
+        TodoItem item = null;
+        if(itemResponse.isPresent()){
+            item = itemResponse.get();
+            item.setDescription(description);
+        }
+        return addItem(item);
+	}
+	
+	  
+
+	
    
 }

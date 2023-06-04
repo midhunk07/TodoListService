@@ -6,8 +6,10 @@ import org.springframework.http.ResponseEntity;
 
 import com.midhun.programming.todoListService.model.TodoItem;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.midhun.programming.todoListService.service.TodoService;
@@ -22,5 +24,10 @@ public class TodoListController {
     public ResponseEntity<TodoItem> addItem(@RequestBody TodoItem item) throws Exception {
         return ResponseEntity.ok(todoService.addItem(item));
     }
+    @PutMapping(value = "/changeDescription", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TodoItem> changeDescription(@RequestParam Integer itemId, String description){;
+    return ResponseEntity.ok(todoService.changeDescription(itemId, description));
+}
+    
 
 }
