@@ -1,15 +1,15 @@
 package com.midhun.programming.todoListService.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.midhun.programming.todoListService.model.Status;
 import com.midhun.programming.todoListService.model.TodoItem;
 import com.midhun.programming.todoListService.repository.TodoItemRepository;
 
 import lombok.extern.slf4j.Slf4j;
-
-
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -36,7 +36,7 @@ public class TodoServiceImpl implements TodoService {
 	}
 	
 	 @Override
-	    public TodoItem markDone(Integer itemId, boolean isDone, String status) {
+	    public TodoItem markItem(Integer itemId, boolean isDone, String status) {
 	        Optional<TodoItem> itemResponse = todoItemRepository.findByItemId(itemId);
 	        TodoItem item = null;
 	        if(itemResponse.isPresent()){
@@ -46,6 +46,13 @@ public class TodoServiceImpl implements TodoService {
 	        return todoItemRepository.save(item);
 	    }  
 
-	
+	   @Override
+	    public Iterable<TodoItem> getAllItems(Optional<String> status) {
+	        if(status.isPresent()) {
+	            return todoItemRepository.findByItemStatus(status);
+	        } else {
+	            return todoItemRepository.findAll();
+	        }
+	    }
    
 }
