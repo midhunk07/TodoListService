@@ -42,7 +42,10 @@ public class TodoServiceImpl implements TodoService {
 	        Optional<TodoItem> itemResponse = todoItemRepository.findByItemId(itemId);
 	        TodoItem item = null;
 	        if(itemResponse.isPresent()){
-	            item = itemResponse.get();
+	        	Date updationDate = new Date();
+	        	item = itemResponse.get();
+	            if(isDone)
+		        item.setUpdateDate(updationDate);
 	            item.setStatus(status != null && status.equals(Status.past_due.getStatus())? Status.past_due.getStatus() : isDone ? Status.done.getStatus() : Status.not_done.getStatus());
 	        }
 	        return todoItemRepository.save(item);
