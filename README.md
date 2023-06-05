@@ -21,10 +21,10 @@ Building a REST API with Spring Boot using an H2 in-memory database.
       * SLF4j
 
 
-#Build
+# Build
 * Maven
 
-#Services
+# Services
 * add - add an item to Todo list (Todo item has id, description, status, creation date, due date)
 * change description - update the description of an item
 * markItem - mark an item as done or not done with the date-time at which the item was marked as done.
@@ -32,7 +32,7 @@ Building a REST API with Spring Boot using an H2 in-memory database.
 * getItemsById - fetch specific item by itemId
 * cron scheduled job to update past due items, this will run every 24 hours once
 
-#How to Build Service
+# How to Build Service
 
 * mvn clean install
 
@@ -43,13 +43,13 @@ Building a REST API with Spring Boot using an H2 in-memory database.
   
   * docker run -p8080:8080 todoservice
 
-#How to run test cases
+# How to run test cases
 
 mvn test
 
-#How to run services locally
+# How to run services locally
 
-#Add Item
+# Add Item
 * path -  /todo/add
 * Method - POST
 * url - localhost:8080/todo/add
@@ -67,31 +67,31 @@ mvn test
       "status": "not done"
   }
 
-#Change description of a specific Item
+# Change description of a specific Item
 
 * path -  /todo/changedescription
 * Method - PUT
 * url - localhost:8080/todo/changedescription?itemId=1&description=task2
 
-#markItem as done or not done
+# markItem as done or not done
 
 * path -  /todo/markItem
 * Method - POST
 * url - localhost:8080/todo/markItem?itemId=1&isDone=true
 
-#getItemsById
+# getItemsById
 
 * path -  /todo/getItemsById
 * Method - GET
 * url - localhost:8080/todo/getItemsById?itemId=1
 
-#getAllItems
+# getAllItems
 
 * path -  /todo/getAllItems
 * Method - GET
 * url - localhost:8080/todo/getAllItems
 
-#getAllItems with status
+# getAllItems with status
 
 * path -  /todo/getAllItems
 * Method - GET
